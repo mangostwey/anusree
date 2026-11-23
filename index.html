@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabLink AI - Smart Campus Laboratory Sharing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark"><span>↗</span></div><div><strong>LabLink <em>AI</em></strong><small>UNIVERSITY RESOURCE NETWORK</small></div></div>
+    <nav class="nav">
+      <button class="nav-item active" data-page="dashboard"><span class="nav-symbol">⌂</span><span>Overview</span></button>
+      <button class="nav-item" data-page="discover"><span class="nav-symbol">⌕</span><span>Discover</span></button>
+      <button class="nav-item" data-page="projects"><span class="nav-symbol">◇</span><span>My projects</span></button>
+      <button class="nav-item" data-page="bookings"><span class="nav-symbol">▣</span><span>Bookings</span><b class="nav-badge">3</b></button>
+      <button class="nav-item" data-page="approvals"><span class="nav-symbol">✓</span><span>Approvals</span><b class="nav-badge orange">5</b></button>
+      <div class="nav-label">INSIGHTS</div>
+      <button class="nav-item" data-page="analytics"><span class="nav-symbol">▥</span><span>Analytics</span></button>
+      <button class="nav-item" data-page="maintenance"><span class="nav-symbol">⚙</span><span>Maintenance</span></button>
+    </nav>
+    <div class="sidebar-foot">
+      <button class="nav-item"><span class="nav-symbol">⚙</span><span>Settings</span></button>
+      <div class="profile"><div class="avatar">AR</div><div><strong>Alex Rivera</strong><small>Student · CSE</small></div><span>›</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="breadcrumb"><span>University Hub</span><b>/</b><span id="breadcrumbPage">Overview</span></div><p class="eyebrow" id="dateLabel">MONDAY, 23 NOVEMBER</p><h1 id="pageTitle">Good morning, Alex</h1></div>
+      <div class="top-actions">
+        <button class="role-switch" id="roleSwitch"><span class="role-dot"></span><b>Student view</b><span>⌄</span></button>
+        <button class="icon-button" id="notificationBtn" aria-label="Notifications">♢<i></i></button>
+        <button class="primary-button" id="newRequestBtn"><span>＋</span> New project request</button>
+      </div>
+    </header>
+
+    <section class="page active" id="dashboard">
+      <div class="ai-banner">
+        <div class="ai-orb">✦</div>
+        <div class="ai-copy"><small>LABMATE AI</small><h2>What are you building this week?</h2><p>Describe your project and we'll match you with the right equipment.</p></div>
+        <button class="ai-search" id="openAiSearch"><span>⌕</span> Try “I need to test a solar-powered drone…” <kbd>⌘ K</kbd></button>
+      </div>
+
+      <div class="operational-strip">
+        <div class="operational-title"><span class="status-pulse"></span><div><small>CAMPUS STATUS</small><strong>All systems operational</strong></div></div>
+        <div class="operational-metric"><span>48</span><small>Available resources</small></div>
+        <div class="operational-metric"><span>12</span><small>Labs open now</small></div>
+        <div class="operational-metric"><span>96.4%</span><small>Booking success</small></div>
+        <div class="operational-metric"><span>2</span><small>Maintenance notices</small></div>
+        <button class="status-detail-btn">View status <span>→</span></button>
+      </div>
+
+      <div class="stats">
+        <article class="stat-card"><div class="stat-icon blue">◫</div><div><span>Available now</span><strong id="availableCount">24</strong></div><small class="good">↗ 8 this week</small></article>
+        <article class="stat-card"><div class="stat-icon purple">▣</div><div><span>Active requests</span><strong>3</strong></div><small>Next: 10:30 AM</small></article>
+        <article class="stat-card"><div class="stat-icon amber">⌁</div><div><span>Awaiting approval</span><strong>2</strong></div><small class="warn">Needs attention</small></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Cross-department</span><strong>7</strong></div><small class="good">3 approved</small></article>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel schedule-panel">
+          <div class="panel-head"><div><small class="kicker">TODAY</small><h2>Your schedule</h2></div><button class="text-button" data-link="bookings">View all →</button></div>
+          <div class="schedule-list" id="scheduleList"></div>
+        </section>
+        <section class="panel recommendations">
+          <div class="panel-head"><div><small class="kicker">AI MATCHED</small><h2>Recommended for you</h2></div><button class="spark-button">✦ Refresh</button></div>
+          <div class="recommendation-list" id="recommendationList"></div>
+        </section>
+      </div>
+
+      <div class="lower-grid">
+        <section class="panel utilization">
+          <div class="panel-head"><div><small class="kicker">THIS WEEK</small><h2>Resource utilisation</h2></div><select><option>All departments</option><option>Computer Science</option><option>Robotics</option></select></div>
+          <div class="chart" id="utilChart"></div>
+        </section>
+        <section class="panel conflicts">
+          <div class="panel-head"><div><small class="kicker">SMART RESOLUTION</small><h2>Potential conflicts</h2></div><span class="live-dot">LIVE</span></div>
+          <div id="conflictPreview"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page" id="discover">
+      <div class="discover-head">
+        <div><small class="kicker">AI EQUIPMENT DISCOVERY</small><h2>Find the right lab resource</h2></div>
+        <button class="filter-button" id="aiRecommendBtn">✦ AI recommendations</button>
+      </div>
+      <div class="search-row">
+        <div class="search-box"><span>⌕</span><input id="equipmentSearch" placeholder="Search naturally: “high-speed 3D printer for carbon fibre parts”"></div>
+        <button class="filter-button" id="filtersBtn">◫ Filters <b>2</b></button>
+      </div>
+      <div class="chips" id="departmentChips">
+        <button class="chip active" data-dept="All">All departments</button><button class="chip" data-dept="Computer Science">Computer Science</button><button class="chip" data-dept="Electronics">Electronics</button><button class="chip" data-dept="Mechanical">Mechanical</button><button class="chip" data-dept="Robotics">Robotics</button><button class="chip" data-dept="Electrical">Electrical</button>
+      </div>
+      <div class="resource-grid" id="resourceGrid"></div>
+    </section>
+
+    <section class="page" id="projects">
+      <div class="section-head"><div><small class="kicker">PROJECT WORKSPACE</small><h2>My project requests</h2></div><button class="primary-button" id="createProjectBtn">＋ Create project</button></div>
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <section class="page" id="bookings">
+      <div class="section-head"><div><small class="kicker">SMART CALENDAR</small><h2>Bookings</h2></div><div class="segmented"><button class="active">Upcoming</button><button>Past</button><button>Cancelled</button></div></div>
+      <div class="booking-layout">
+        <section class="panel calendar-panel"><div class="calendar-head"><button id="prevMonth">‹</button><h3 id="calendarMonth">November 2026</h3><button id="nextMonth">›</button></div><div class="weekdays"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div><div class="calendar" id="calendar"></div></section>
+        <section class="panel agenda-panel"><div class="panel-head"><div><small class="kicker">SELECTED DAY</small><h2>23 November</h2></div></div><div id="agendaList"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="approvals">
+      <div class="section-head"><div><small class="kicker">FACULTY WORKSPACE</small><h2>Pending approvals</h2></div><button class="filter-button">Newest first⌄</button></div>
+      <div class="approval-list" id="approvalList"></div>
+    </section>
+
+    <section class="page" id="analytics">
+      <div class="section-head"><div><small class="kicker">UNIVERSITY-WIDE INSIGHTS</small><h2>Resource analytics</h2></div><select class="period-select"><option>Last 30 days</option><option>Last 90 days</option></select></div>
+      <div class="analytics-grid">
+        <section class="panel analytics-chart"><div class="panel-head"><div><small class="kicker">BOOKING TRENDS</small><h2>Requests by department</h2></div></div><div class="donut-wrap"><div class="donut"></div><div class="legend"><span><i class="c1"></i>Computer Science <b>32%</b></span><span><i class="c2"></i>Mechanical <b>24%</b></span><span><i class="c3"></i>Electronics <b>21%</b></span><span><i class="c4"></i>Robotics <b>23%</b></span></div></div></section>
+        <section class="panel"><div class="panel-head"><div><small class="kicker">MOST REQUESTED</small><h2>Top resources</h2></div></div><div id="topResources"></div></section>
+      </div>
+    </section>
+
+    <section class="page" id="maintenance">
+      <div class="section-head"><div><small class="kicker">FACILITY MANAGEMENT</small><h2>Equipment maintenance</h2></div><button class="primary-button" id="addMaintenanceBtn">＋ Schedule maintenance</button></div>
+      <div class="maintenance-list" id="maintenanceList"></div>
+    </section>
+  </main>
+
+  <button class="labmate-fab" id="labmateBtn"><span>✦</span><div><strong>LabMate AI</strong><small>Ask me anything</small></div></button>
+
+  <div class="modal-backdrop hidden" id="bookingModal">
+    <div class="modal">
+      <div class="modal-head"><div><small class="kicker">SMART BOOKING</small><h2 id="modalTitle">Request a resource</h2></div><button class="close-btn" data-close="bookingModal">×</button></div>
+      <form id="bookingForm">
+        <label>Resource<input id="bookingResource" required></label>
+        <label>Project<select id="bookingProject"><option>Solar Drone Navigation</option><option>EV Battery Monitoring</option><option>Robotic Arm Prototype</option></select></label>
+        <div class="form-row"><label>Date<input id="bookingDate" type="date" required></label><label>Start time<select id="bookingTime"><option>09:00 AM</option><option>10:30 AM</option><option>01:00 PM</option><option>03:30 PM</option></select></label></div>
+        <label>Duration<select id="bookingDuration"><option>1 hour</option><option>2 hours</option><option selected>3 hours</option><option>Half day</option></select></label>
+        <label>Purpose<textarea id="bookingPurpose" placeholder="Describe what you plan to do..." required></textarea></label>
+        <div class="availability-check" id="availabilityCheck"><span>✓</span><div><strong>Availability confirmed</strong><small>No double-booking conflicts detected</small></div></div>
+        <div class="modal-actions"><button type="button" class="secondary-button" data-close="bookingModal">Cancel</button><button type="submit" class="primary-button">Submit request</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="projectModal">
+    <div class="modal">
+      <div class="modal-head"><div><small class="kicker">PROJECT PROFILE</small><h2>Create a project request</h2></div><button class="close-btn" data-close="projectModal">×</button></div>
+      <form id="projectForm">
+        <label>Project title<input id="projectTitle" placeholder="e.g. Autonomous Solar Drone" required></label>
+        <label>Project description<textarea id="projectDescription" placeholder="Describe your goals, materials and technical requirements..." required></textarea></label>
+        <div class="form-row"><label>Department<select><option>Computer Science</option><option>Electronics</option><option>Mechanical</option><option>Robotics</option></select></label><label>Deadline<input type="date" id="projectDeadline" required></label></div>
+        <label>Team members<input placeholder="Add names or university emails"></label>
+        <div class="modal-actions"><button type="button" class="secondary-button" data-close="projectModal">Cancel</button><button type="submit" class="primary-button">Analyze & recommend</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="aiModal">
+    <div class="modal ai-modal">
+      <div class="modal-head"><div><small class="kicker">LABMATE AI · PROJECT MATCHING</small><h2>Equipment discovery</h2></div><button class="close-btn" data-close="aiModal">×</button></div>
+      <div class="ai-prompt"><span>✦</span><textarea id="aiPrompt" placeholder="Describe your project, team size and deadline…"></textarea><button id="runAiSearch">Analyze</button></div>
+      <div id="aiResults" class="ai-results"></div>
+    </div>
+  </div>
+
+  <aside class="chat-panel hidden" id="chatPanel">
+    <div class="chat-head"><div class="ai-orb small">✦</div><div><strong>LabMate AI</strong><small><i></i> Online · campus resource expert</small></div><button id="closeChat">×</button></div>
+    <div class="chat-messages" id="chatMessages"><div class="bot-message">Hi Alex! I can help you find equipment, compare alternatives or explain booking requirements. What are you working on?</div></div>
+    <div class="chat-suggestions"><button>Find 3D printers</button><button>Check AI workstation</button><button>Cross-department booking</button></div>
+    <form class="chat-input" id="chatForm"><input id="chatInput" placeholder="Ask LabMate AI..."><button>➤</button></form>
+  </aside>
+
+  <div class="toast hidden" id="toast"><span>✓</span><div><strong id="toastTitle">Success</strong><small id="toastMessage">Action completed.</small></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
